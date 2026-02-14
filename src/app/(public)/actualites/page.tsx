@@ -62,7 +62,7 @@ interface NewsPageProps {
 // Fetch posts with filters
 async function fetchPosts(params: NewsPageSearchParams) {
   const page = params.page || '1';
-  const queryParts: string[] = [`per_page=9`, `page=${page}`, `status=published`];
+  const queryParts: string[] = [`per_page=10`, `page=${page}`, `status=published`];
   
   if (params.category) {
     queryParts.push(`category=${params.category}`);
@@ -109,7 +109,7 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
   const [postsRes, categoriesRes, tagsRes, eventsRes, announcementsRes, archiveMonthsRes] = await Promise.all([
     fetchPosts(params).catch(() => ({
       data: [],
-      meta: { current_page: 1, last_page: 1, per_page: 9, total: 0 },
+      meta: { current_page: 1, last_page: 1, per_page: 10, total: 0 },
     })),
     fetchCategories(),
     fetchTags(),
